@@ -27,7 +27,7 @@ test.beforeEach(async ({ page }) => {
   await homePage.clickNewArticleLink();
 });
 
-test('Creat an article without required fields', async () => {
+test('Create an article without required fields', async () => {
   await createArticlePage.clickPublishArticleButton();
   await createArticlePage.assertErrorMessageContainsText(
     'Article title cannot be empty',

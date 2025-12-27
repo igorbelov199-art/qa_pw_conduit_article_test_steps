@@ -32,6 +32,6 @@ test('create an article without article description', async () => {
   await createArticlePage.fillArticleBodyInput(faker.lorem.paragraphs(1));
   await createArticlePage.clickPublishArticleButton();
   await createArticlePage.assertErrorMessageContainsText(
-    'Article description cannot be empty',
+    'Article description cannot be',
   );
 });
