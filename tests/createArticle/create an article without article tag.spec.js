@@ -6,6 +6,7 @@ import { faker } from '@faker-js/faker';
 
 let homePage;
 let createArticlePage;
+const title = faker.lorem.sentence();
 
 test.beforeEach(async ({ page }) => {
   const signUpPage = new SignUpPage(page);
@@ -28,8 +29,10 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('create an article without article tag', async () => {
-  await createArticlePage.fillArticleTitle(faker.lorem.sentence());
+  await createArticlePage.fillArticleTitle(title);
   await createArticlePage.fillArticleDescription(faker.lorem.sentence());
   await createArticlePage.fillArticleBodyInput(faker.lorem.paragraphs(1));
   await createArticlePage.clickPublishArticleButton();
+
+  await createArticlePage.assertArticleIsPublished(title);
 });

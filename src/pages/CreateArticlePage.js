@@ -16,7 +16,9 @@ export class CreateArticlePage {
     this.publishArticleButton = page.getByRole('button', {
       name: 'Publish Article',
     });
-    this.errorMessage = page.getByRole('list').nth(2);
+    this.errorMessage = page.getByRole('list').nth(1);
+
+    this.articleTitleHeading = page.getByRole('heading', { level: 1 }).first();
   }
 
   async fillArticleTitle(title) {
@@ -53,6 +55,13 @@ export class CreateArticlePage {
   async assertErrorMessageContainsText(messageText) {
     await test.step(`Assert the '${messageText}' error is shown`, async () => {
       await expect(this.errorMessage).toContainText(messageText);
+    });
+  }
+
+  async assertArticleIsPublished(expectedTitle) {
+    await test.step('Assert article is successfully published', async () => {
+      await expect(this.page).toHaveURL(/\/article\//);
+      await expect(this.articleTitleHeading).toContainText(expectedTitle);
     });
   }
 }
