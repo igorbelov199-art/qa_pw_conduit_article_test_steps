@@ -16,7 +16,7 @@ export class CreateArticlePage {
     this.publishArticleButton = page.getByRole('button', {
       name: 'Publish Article',
     });
-    this.errorMessage = page.getByRole('list').nth(1);
+    this.errorMessage = page.locator('.error-messages');
 
     this.articleTitleHeading = page.getByRole('heading', { level: 1 }).first();
   }
